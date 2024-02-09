@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+    <style>
+        .karan {
+            color: red;
+        }
+        .centering-heading {
+            text-align: center;
+        }
+        .form-centering {
+            text-align: center;
+        }
+        .background {
+            background-image: url("https://wallpapers.net/web/wallpapers/spot-light-background-hd-wallpaper/thumbnail/lg.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            height: 100vh;
+        }
+        #register-button {
+            background-color: palevioletred;
+            color: wheat;
+            padding: 5px 20px; 
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        #register-button:hover {
+            background-color: black;
+        }
+        body {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to bottom, #6190e8, #a7bfe8); 
+        }
+        form {
+            color: #6190e8;
+            width: 20rem; 
+            padding: 2rem; 
+            display: flex;
+            flex-direction: column;
+            background: white; 
+            border: 2px solid #ccc; 
+            border-radius: 10px; 
+        }
+        input {
+            width: calc(100% - 22px); 
+            margin: 5px auto;
+            padding: 10px;
+            background: transparent;
+            border: 1px solid #ccc;
+            border-radius: 5px; 
+        }
+        header {
+            position: relative;
+            bottom: 2px;
+            color: whitesmoke;
+        }
+    </style>
+</head>
+<body>
+<div class="background">
+    <div class="form-centering">
+        <header>
+            <h1 class="centering-heading">Registration Form</h1>
+        </header>
+        <form id="registrationForm" onsubmit="return validateForm()">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <span class="karan" id="usernameKaran"></span><br>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <span class="karan" id="emailKaran"></span><br>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <span class="karan" id="passwordKaran"></span><br>
+            
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
+            <span class="karan" id="confirmPasswordKaran"></span><br>
+            
+            <input type="submit" value="Register" id="register-button">
+        </form>
+    </div>
+</div>
+<script>
+    function validateForm() {
+        let username = document.getElementById("username").value;
+        let email = document.getElementById("email").value;
+        let password = document.getElementById("password").value;
+        let confirmPassword = document.getElementById("confirmPassword").value;
+
+        let usernameKaran = document.getElementById("usernameKaran");
+        let emailKaran = document.getElementById("emailKaran");
+        let passwordKaran = document.getElementById("passwordKaran");
+        let confirmPasswordKaran = document.getElementById("confirmPasswordKaran");
+
+        let valid = true;
+
+        usernameKaran.innerHTML = "";
+        emailKaran.innerHTML = "";
+        passwordKaran.innerHTML = "";
+        confirmPasswordKaran.innerHTML = "";
+
+        if (username.length < 5) { 
+            usernameKaran.innerHTML = "Username must be at least 5 characters.";
+            valid = false;
+        }
+
+        if (!email.includes('@')) {
+            emailKaran.innerHTML = "Invalid email address.";
+            valid = false;
+        }
+
+        if (password.length < 8) {
+            passwordKaran.innerHTML = "Password must be at least 8 characters.";
+            valid = false;
+        }
+
+        if (password !== confirmPassword) {
+            confirmPasswordKaran.innerHTML = "Passwords do not match!";
+            valid = false;
+        }
+
+        return valid;
+    }
+</script>
+</body>
+</html>
